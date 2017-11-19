@@ -11,12 +11,13 @@ public class circle {
         System.out.print("Enter radius: ");
         int radius = sc.nextInt(); // Large radius might be better for pi
 
-        System.out.println("Enter -1 to use random numbers, or 0 to set your own coordinates: ");
-        int choice = sc.nextInt();
+        System.out.println("Enter -1 to use random numbers");
+        System.out.print("Enter X point: ");
+        int x = sc.nextInt();
 
 
 
-        if (choice < 0) {
+        if (x < 0) {
             System.out.print("Enter number of random points: ");
             int count = sc.nextInt(); // Get 
             x = 0; // Ugly. I know. 
@@ -33,13 +34,13 @@ public class circle {
                     //System.out.println("Point (" + x + ", " + y + ") falls outside the circle.");
                     // Still here for demonstration 
                 }
+                if (i % 1000 == 0) {
+                    System.out.println(i);
+                }
             }
             double piNum = ((double)ins*4)/(double)count;
             System.out.println(piNum);
         } else {
-        	System.out.print("Enter X point: ");
-        	int x = sc.nextInt();
-
             System.out.print("Enter Y point: ");
             int y = sc.nextInt();
 
