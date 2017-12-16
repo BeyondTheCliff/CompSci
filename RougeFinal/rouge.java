@@ -17,7 +17,7 @@ public class rouge {
 		rooms[0].setDiscription("Hallway");
 		rooms[1].setDiscription("Study");
 		rooms[2].setDiscription("Lounge");
-		rooms[3].setDiscription("Greenhouse");
+		rooms[3].setDiscription("Greenroom");
 		rooms[4].setDiscription("Dining Room");
 
 		rooms[0].num = 0;
@@ -64,7 +64,6 @@ public class rouge {
 			System.out.println("One door leads to the " + rooms[CR].Exits[0].getRoom().getDescription() + " and the other leads to the " + rooms[CR].Exits[1].getRoom().getDescription());
 			System.out.print(">");
 			in = sc.nextLine();
-			System.out.println(in);
 			for (i = 0; i < 5; i++) {
 				for (n = 0; n < 2; n++) {
 					if (rooms[i].Exits[n].target.getDescription().equals(in)) {
@@ -74,8 +73,7 @@ public class rouge {
 
 			}
 			if (in.contains("get") && in.contains(rooms[CR].localItem.getName())) {
-				inv[invIndex] = rooms[CR].localItem;
-				System.out.println(inv[invIndex].getName());
+				inv[invIndex].setName(rooms[CR].localItem.getName());
 			}
 			if (in.contains("use")) {
 				for (x = 0; x < 5; x++) {
