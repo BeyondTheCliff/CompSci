@@ -9,7 +9,7 @@ public class rouge {
 		Scanner sc = new Scanner(System.in);
 		Random rand = new Random();
 
-
+		int hasKey = 0;
 		int invIndex = 0;
 		item[] inv = {new item(), new item(), new item(), new item(), new item()};
 		room[] rooms = {new room(), new room(), new room(), new room(), new room()};
@@ -60,7 +60,9 @@ public class rouge {
 		int i, n, x;
 		while (rooms[CR].getDescription() != "free") {
 			System.out.println("You are in the " + rooms[CR].getDescription());
-			System.out.println("You see a " + rooms[CR].localItem.getName());
+			if (!rooms[CR].localItem.getName().equals(" ")) {
+				System.out.println("You see a " + rooms[CR].localItem.getName());
+			}
 			System.out.println("One door leads to the " + rooms[CR].Exits[0].getRoom().getDescription() + " and the other leads to the " + rooms[CR].Exits[1].getRoom().getDescription());
 			System.out.print(">");
 			in = sc.nextLine();
@@ -74,19 +76,20 @@ public class rouge {
 			}
 			if (in.contains("get") && in.contains(rooms[CR].localItem.getName())) {
 				inv[invIndex].setName(rooms[CR].localItem.getName());
+				if (rooms[CR].localItem.getName().equals("Key")) {
+					hasKey = 1;
+				}
+				rooms[CR].localItem.setName(" ");
 			}
 			if (in.contains("use")) {
-				for (x = 0; x < 5; x++) {
-					System.out.println(inv[x].getName() == "Key");
-					if (in.contains(inv[x].getName())) {
-						if (inv[x].getName() == "Key") {
-							if (CR == 0) {
-								rooms[CR].setDiscription("free");
-								System.out.println("You have escaped!");
-							}
-						}
+				if (in.contains("Key")) {
+					if (hasKey == 1 && CR==4) {
+						rooms[CR].setDiscription("free");
+						System.out.println("You have escaped!");
 					}
+
 				}
+
 			}
 		}
 	}
